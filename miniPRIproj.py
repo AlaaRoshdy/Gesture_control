@@ -49,7 +49,7 @@ PWM.start(0)
 bus = smbus.SMBus(1) # bus = smbus.SMBus(0) for Revision 1
 address = 0x68       # via i2cdetect
  
-# Aktivieren, um das Modul ansprechen zu koennen
+# Activate
 bus.write_byte_data(address, power_mgmt_1, 0)
 
 print "accelerationssensor"
@@ -58,7 +58,7 @@ print "---------------------"
 acceleration_xout = read_word_2c(0x3b)
 acceleration_yout = read_word_2c(0x3d)
 acceleration_zout = read_word_2c(0x3f)
-
+# Range not tested yet. Not finalized if it is -17000,17000 or not.
 acceleration_xout_remapped = interp1d([-17000,17000],[0,180])
 acceleration_yout_remapped = interp1d([-17000,17000],[0,180])
 acceleration_zout_remapped = interp1d([-17000,17000],[0,180])
