@@ -20,13 +20,14 @@ pwm = GPIO.PWM(servopin, 50)
 # Initial duty cycle
 pwm.start(0)
 flag = 0
+gyroXAngle, gyroYAngle, compAngleX, compAngleY = ang.init()
 while(True):
     try:
-        angles = ang.get_angles()
+        angles = ang.get_angles(gyroXAngle, gyroYAngle, compAngleX, compAngleY)
         if angles is None:
             flag += 1
         else:
-            kalAngleX, kalAngleY = angles
+            kalAngleX, kalAngleY, gyroXAngle, gyroYAngle, compAngleX, compAngleY = angles
         if(flag >100): #Problem with the connection
             print("There is a problem with the connection")
             flag=0
