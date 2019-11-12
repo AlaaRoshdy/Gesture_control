@@ -1,6 +1,5 @@
 import numpy as np
 from time import sleep
-from scipy.interpolate import interp1d
 import RPi.GPIO as GPIO
 import smbus
 import math
@@ -24,7 +23,7 @@ pwm.start(0)
 while(True):
     try:
         kalAngleX,kalAngleY = ang.get_angles()
-        if(kalAngleY >= 45)
+        if(kalAngleY >= 45):
             pwm.ChangeDutyCycle(0)
             continue
         DC = kalAngleX
