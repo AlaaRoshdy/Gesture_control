@@ -19,10 +19,19 @@ GPIO.setup(servopin, GPIO.OUT)
 pwm = GPIO.PWM(servopin, 50)
 # Initial duty cycle
 pwm.start(0)
-
+flag = 0
 while(True):
     try:
-        kalAngleX,kalAngleY = ang.get_angles()
+        angles = ang.get_angles()
+        if angles is None:
+            flag += 1
+        else:
+            kalAngleX, kalAngleY = angles
+        if(flag >100): #Problem with the connection
+		    print("There is a problem with the connection")
+		    flag=0
+            continue
+
         if(kalAngleY >= 45):
             pwm.ChangeDutyCycle(0)
             continue
