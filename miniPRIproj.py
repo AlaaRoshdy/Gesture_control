@@ -41,7 +41,6 @@ while(True):
         angle = max(angle, 0)
         print("Turinin to angle {}".format(angle))
         pwm.ChangeDutyCycle(angle/18 + 2)
-        sleep(0.5)
     except KeyboardInterrupt: 
         pwm.stop()
         GPIO.cleanup() 
