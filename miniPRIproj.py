@@ -39,6 +39,7 @@ while(True):
             continue
         angle = min(angle + kalAngleX, 180)
         angle = max(angle, 0)
+        print("Turinin to angle {}".format(angle))
         pwm.ChangeDutyCycle(angle/18 + 2)
         sleep(0.5)
     except KeyboardInterrupt: 
