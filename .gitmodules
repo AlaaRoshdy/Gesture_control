@@ -1,0 +1,3 @@
+[submodule "Kalman-Filter-Python-for-mpu6050"]
+	path = Kalman_Filter_Python_for_mpu6050
+	url = https://github.com/AlaaRoshdy/Kalman-Filter-Python-for-mpu6050.git
