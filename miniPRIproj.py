@@ -19,6 +19,9 @@ GPIO.setup(servopin, GPIO.OUT)
 pwm = GPIO.PWM(servopin, 50)
 # Initial duty cycle
 pwm.start(2 + 90/18)
+flag = 0
+gyroXAngle, gyroYAngle, compAngleX, compAngleY, kalAngleX, kalAngleY = ang.init()
+angle = 0
 while(True):
     try:
         angles = ang.get_angles(gyroXAngle, gyroYAngle, compAngleX, compAngleY, kalAngleX, kalAngleY)
