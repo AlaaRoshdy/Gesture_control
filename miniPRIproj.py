@@ -20,10 +20,10 @@ pwm = GPIO.PWM(servopin, 50)
 # Initial duty cycle
 pwm.start(0)
 flag = 0
-gyroXAngle, gyroYAngle, compAngleX, compAngleY = ang.init()
+gyroXAngle, gyroYAngle, compAngleX, compAngleY, kalAngleY = ang.init()
 while(True):
     try:
-        angles = ang.get_angles(gyroXAngle, gyroYAngle, compAngleX, compAngleY)
+        angles = ang.get_angles(gyroXAngle, gyroYAngle, compAngleX, compAngleY, kalAngleY)
         if angles is None:
             flag += 1
         else:
