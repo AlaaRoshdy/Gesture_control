@@ -37,7 +37,7 @@ while(True):
         # if(kalAngleY >= 45):
         #     pwm.ChangeDutyCycle(0)
         #     continue
-        angle = 90 + kalAngleX
+        angle = max(min(90 + kalAngleX, 180), 0)
         print("Turinin to angle {}".format(angle))
         if kalAngleY < 45:
             pwm.ChangeDutyCycle(angle/18 + 2)
