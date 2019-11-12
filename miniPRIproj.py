@@ -20,10 +20,10 @@ pwm = GPIO.PWM(servopin, 50)
 # Initial duty cycle
 pwm.start(0)
 flag = 0
-gyroXAngle, gyroYAngle, compAngleX, compAngleY, kalAngleY = ang.init()
+gyroXAngle, gyroYAngle, compAngleX, compAngleY, kalAngleX, kalAngleY = ang.init()
 while(True):
     try:
-        angles = ang.get_angles(gyroXAngle, gyroYAngle, compAngleX, compAngleY, kalAngleY)
+        angles = ang.get_angles(gyroXAngle, gyroYAngle, compAngleX, compAngleY, kalAngleX, kalAngleY)
         if angles is None:
             flag += 1
         else:
@@ -36,9 +36,11 @@ while(True):
         if(kalAngleY >= 45):
             pwm.ChangeDutyCycle(0)
             continue
-        DC = kalAngleX/18 + 2
-        pwm.ChangeDutyCycle(DC)
+        angle = min(angle + kalAngleX, 180)
+        angle = max(angle, 0)
+        pwm.ChangeDutyCycle(angle/18 + 2)
+        sleep(0.5)
     except KeyboardInterrupt: 
         pwm.stop()
         GPIO.cleanup() 
-        break
+        break 
