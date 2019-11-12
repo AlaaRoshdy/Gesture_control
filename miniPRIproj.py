@@ -28,8 +28,8 @@ while(True):
         else:
             kalAngleX, kalAngleY = angles
         if(flag >100): #Problem with the connection
-		    print("There is a problem with the connection")
-		    flag=0
+            print("There is a problem with the connection")
+            flag=0
             continue
 
         if(kalAngleY >= 45):
