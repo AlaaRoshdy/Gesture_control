@@ -18,10 +18,7 @@ GPIO.setup(servopin, GPIO.OUT)
 # Created  PWM channels at 50Hz frequency
 pwm = GPIO.PWM(servopin, 50)
 # Initial duty cycle
-pwm.start(2)
-flag = 0
-gyroXAngle, gyroYAngle, compAngleX, compAngleY, kalAngleX, kalAngleY = ang.init()
-angle = 0
+pwm.start(2 + 90/18)
 while(True):
     try:
         angles = ang.get_angles(gyroXAngle, gyroYAngle, compAngleX, compAngleY, kalAngleX, kalAngleY)
@@ -37,7 +34,7 @@ while(True):
         # if(kalAngleY >= 45):
         #     pwm.ChangeDutyCycle(0)
         #     continue
-        angle = kalAngleX if kalAngleX > 0 else 180 + kalAngleX
+        angle = 90 + kalAngleX
         print("Turinin to angle {}".format(angle))
         if kalAngleY < 45:
             pwm.ChangeDutyCycle(angle/18 + 2)
