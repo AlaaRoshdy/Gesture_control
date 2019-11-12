@@ -34,13 +34,13 @@ while(True):
             flag=0
             continue
 
-        if(kalAngleY >= 45):
-            pwm.ChangeDutyCycle(0)
-            continue
-        angle = min(angle + kalAngleX, 180)
-        angle = max(angle, 0)
+        # if(kalAngleY >= 45):
+        #     pwm.ChangeDutyCycle(0)
+        #     continue
+        angle = kalAngleX if kalAngleX > 0 else 180 + kalAngleX
         print("Turinin to angle {}".format(angle))
-        pwm.ChangeDutyCycle(angle/18 + 2)
+        if kalAngleY < 45:
+            pwm.ChangeDutyCycle(angle/18 + 2)
     except KeyboardInterrupt: 
         pwm.stop()
         GPIO.cleanup() 
