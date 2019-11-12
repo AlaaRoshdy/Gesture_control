@@ -36,7 +36,7 @@ while(True):
         if(kalAngleY >= 45):
             pwm.ChangeDutyCycle(0)
             continue
-        DC = kalAngleX
+        DC = kalAngleX/18 + 2
         pwm.ChangeDutyCycle(DC)
     except KeyboardInterrupt: 
         pwm.stop()
